@@ -35,26 +35,28 @@ const CertificateGenerator = () => {
   const burdenOptions = ["2.5VA", "5VA", "10VA", "15VA"];
   const accuracyClassOptions = ["0.2s", "0.2", "0.5", "0.5s", "1"];
   const ltctTableData = [
-    ['SR NO.', 'CURRENT RATIO', 'BURDEN', 'TYPE OF ERROR', 'PERCENTAGE OF RATED PRIMARY CURRENT'],
-    [formData.serialNumber+'-A', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '120%: -0.121, 100%: -0.139, 20%: -0.396, 5%: -0.896'],
-    [formData.serialNumber+'-B', formData.currentRatio, formData.burden, 'PHASE ERROR IN MIN.', '120%: -2.98, 100%: -1.08, 20%: 9.56, 5%: 19.1'],
-    [formData.serialNumber+'-C', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '120%: -0.174, 100%: -0.222, 20%: -0.541, 5%: -0.996'],
-    [formData.serialNumber+'-D', formData.currentRatio, formData.burden, 'PHASE ERROR IN MIN.', '120%: -2.29, 100%: -1.44, 20%: 11.9, 5%: 25.1'],
+    [{text:'SR NO.',rowSpan:2}, {text:'CURRENT RATIO',rowSpan:2}, {text:'BURDEN',rowSpan:2}, {text:'TYPE OF ERROR',rowSpan:2}, {text:'PERCENTAGE OF RATED PRIMARY CURRENT',colSpan:5, bold:true },'','','',''],
+      ['', '', '', '', '120%', '100%','20%','5%'],
+      [formData.serialNumber+'-A', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '-0.121','-0.139',' -0.396','-0.896'],
+    [formData.serialNumber+'-B', formData.currentRatio, formData.burden, 'PHASE ERROR IN MIN.', '-2.98','-1.08',' 9.56','19.1'],
+    [formData.serialNumber+'-C', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '-0.174','-0.222',' -0.541','-0.996'],
+    [formData.serialNumber+'-D', formData.currentRatio, formData.burden, 'PHASE ERROR IN MIN.', '-2.29','-1.44',' 11.9','25.1'],
     // Add other rows similarly...
   ];
 
   const ctTableData = [
-    ['SR NO.', 'CURRENT RATIO', 'BURDEN', 'TYPE OF ERROR', 'PERCENTAGE OF RATED PRIMARY CURRENT'],
-    [formData.serialNumber+'-A', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '120%: -0.070, 100%: -0.072, 20%: -0.131, 5%: -0.228, 1%: -0.264'],
-    [formData.serialNumber+'-B', formData.currentRatio, formData.burden, 'PHASE ERROR IN MIN.', '120%: 0.26, 100%: 0.10, 20%: 0.50, 5%: 3.84, 1%: 3.84'],
-    [formData.serialNumber+'-C', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '120%: -0.044, 100%: -0.074, 20%: -0.101, 5%: -0.101, 1%: -0.114'],
+    [{text:'SR NO.',rowSpan:2}, {text:'CURRENT RATIO',rowSpan:2}, {text:'BURDEN',rowSpan:2}, {text:'TYPE OF ERROR',rowSpan:2}, {text:'PERCENTAGE OF RATED PRIMARY CURRENT',colSpan:5, bold:true },'','','',''],
+      ['', '', '', '', '120%', '100%','20%','5%','1%'],
+    [formData.serialNumber+'-A', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '-0.070','-0.072','-0.131','-0.228','-0.264'],
+    [formData.serialNumber+'-B', formData.currentRatio, formData.burden, 'PHASE ERROR IN MIN.', '0.26','0.10','0.50','3.84','3.84'],
+    [formData.serialNumber+'-C', formData.currentRatio, formData.burden, 'CURRENT ERROR IN %', '-0.044','-0.074','-0.101','-0.101','-0.114'],
     // Add other rows similarly...
   ];
 
   const ctptTableData = [
     // ['PHASES', 'VA @0.8PF (lag)', 'PRIMARY CURRENT %', 'RATIO ERROR IN %', 'PHASE ERROR IN MIN.'],
-    ['SR NO.', {text:'BURDEN',colSpan:2, bold:true }, {text:''}, 'TYPE OF ERROR',{text:'PERCENTAGE OF RATED PRIMARY CURRENT',colSpan:5, bold:true }, {text:''}, {text:''}, {text:''}, {text:''}],
-    ['SR NO.', {text:'VA'}, {text:'P.F', bold:true }, '', {text:'120'}, {text:'100'},{text:'20', bold:true }, {text:'5'}, {text:'1'}],
+    [{text:'SR NO.',rowSpan:2, bold:true, border:true}, {text:'BURDEN',colSpan:2, bold:true }, {text:''}, 'TYPE OF ERROR',{text:'PERCENTAGE OF RATED PRIMARY CURRENT',colSpan:5, bold:true }, {text:''}, {text:''}, {text:''}, {text:''}],
+    ['', {text:'VA'}, {text:'P.F', bold:true }, '', {text:'120'}, {text:'100'},{text:'20', bold:true }, {text:'5'}, {text:'1'}],
     [{text:formData.serialNumber+'-A', rowSpan:2,}, {text:formData.currentRatio, rowSpan:2}, {text:formData.burden, rowSpan:2}, {text:"Ratio Error in %",}, '-0.036', '-0.039','-0.091', '-0.114', '-0.096'],
     [{text:''}, '', '', 'PHASE ERROR IN MIN.', '0.44','1.44','2.08', '6.11',' 9.31'],
     [{text:formData.serialNumber+'-B', rowSpan:2,}, {text:formData.currentRatio, rowSpan:2}, formData.burden, 'CURRENT ERROR IN %', '-0.063', '-0.061', '-0.116', '-0.148','-0.142'],
@@ -76,15 +78,14 @@ const CertificateGenerator = () => {
     ['A-C', formData.burden, '120%', '0.243', '5.46']
   ];
   
-
   const ptTableData = [
-    ['SR NO.', 'BETWEEN PHASES', 'VA @0.8PF (lag)', '% OF RATED PRIMARY VOLTAGE'],
-    [formData.serialNumber+'', 'A-B', formData.burden, '80%: -0.018, 100%: -0.176, 120%: -0.266'],
-    [formData.serialNumber+'', 'A-B', formData.burden, 'PHASE ANGLE ERROR-MINIMUM: 80%: 3.68, 100%: 5.53, 120%: 10.2'],
-    [formData.serialNumber+'', 'B-C', formData.burden, '80%: -0.018, 100%: -0.176, 120%: -0.266'],
-    [formData.serialNumber+'', 'B-C', formData.burden, 'PHASE ANGLE ERROR-MINIMUM: 80%: 3.68, 100%: 5.53, 120%: 10.2'],
-    [formData.serialNumber+'', 'A-C', formData.burden, '80%: -0.064, 100%: -0.118, 120%: -0.153'],
-    [formData.serialNumber+'', 'A-C', formData.burden, 'PHASE ANGLE ERROR-MINIMUM: 80%: 4.65, 100%: 7.94, 120%: 12.1'],
+    ['SR NO.', 'BETWEEN PHASES', 'VA @0.8PF (lag)', '% OF RATED PRIMARY VOLTAGE','80%','100%','120%'],
+    [{text:formData.serialNumber+' ',rowSpan:2}, {text:'A-B', rowSpan:2}, {text:formData.burden+' ', rowSpan:2} ,"Error:",'-0.018','-0.176','-0.266'],
+    ['', '', '' , 'PHASE ANGLE ERROR-MINIMUM:', '3.68','5.53','10.2'],
+    [{text:formData.serialNumber+' ',rowSpan:2}, {text:'B-C',rowSpan:2}, {text:formData.burden,rowSpan:2}, "Error:",' -0.018','-0.176','-0.266'],
+    ['', '', '', 'PHASE ANGLE ERROR-MINIMUM:', '3.68','5.53','10.2'],
+    [{text:formData.serialNumber+' ',rowSpan:2}, {text:'A-C',rowSpan:2}, {text:formData.burden,rowSpan:2}, "Error:",' -0.064','-0.118','-0.153'],
+    ['', '', '', 'PHASE ANGLE ERROR-MINIMUM:', '4.65','7.94','12.1'],
     // Add other rows similarly...
   ];
 
@@ -210,9 +211,13 @@ const CertificateGenerator = () => {
       styles: {
         header: { fontSize: 18, bold: true, alignment: 'center', margin: [0, 0, 0, 10], color: 'navy' },
         subheader: { fontSize: 14, bold: true, alignment: 'center', margin: [0, 10, 0, 5], color: 'blue' },
-        table: { margin: [0, 5, 0, 15] },
+        table: { margin: [0, 5, 0, 15]},
         tableHeader: { bold: true, fontSize: 12, color: 'black', fillColor: '#eeeeee', alignment: 'left' },
-        tableCell: { margin: [5, 5, 5, 5] },
+        tableCell: { margin: [5, 5, 5, 5] },        
+        tableBorderAll:{
+          border: [true, true, true, true],
+
+        }
       },
     };
   
@@ -269,7 +274,7 @@ const CertificateGenerator = () => {
           body: ctptTableData,
         },
         layout: 'lightHorizontalLines',
-        style: 'table',
+        style:"tableBorderAll",
       });
     }
   
@@ -330,13 +335,13 @@ const CertificateGenerator = () => {
           </Typography>
           <table>
             <tbody>
-              {ltctTableData.map((row, index) => (
+              {/* {ltctTableData.map((row, index) => (
                 <tr key={index}>
                   {row.map((cell, idx) => (
                     <td key={idx}>{cell}</td>
                   ))}
                 </tr>
-              ))}
+              ))} */}
             </tbody>
           </table>
         </Box>
@@ -349,13 +354,13 @@ const CertificateGenerator = () => {
           </Typography>
           <table>
             <tbody>
-              {ctTableData.map((row, index) => (
+              {/* {ctTableData.map((row, index) => (
                 <tr key={index}>
                   {row.map((cell, idx) => (
                     <td key={idx}>{cell}</td>
                   ))}
                 </tr>
-              ))}
+              ))} */}
             </tbody>
           </table>
         </Box>
@@ -368,13 +373,13 @@ const CertificateGenerator = () => {
           </Typography>
           <table>
             <tbody>
-              {ptTableData.map((row, index) => (
+              {/* {ptTableData.map((row, index) => (
                 <tr key={index}>
                   {row.map((cell, idx) => (
                     <td key={idx}>{cell}</td>
                   ))}
                 </tr>
-              ))}
+              ))} */}
             </tbody>
           </table>
         </Box>
